@@ -54,7 +54,8 @@
 топографии поверхности с учетом влияния функции отклика детекторной системы:
 математические методы обработки данных.}
 \author[А.А.~Борзунов]{А.А.~Борзунов\inst{1} \and Д.В.~Лукьяненко\inst{1} \and Э.И.~Рау \inst{1} \and А.Г.~Ягола \inst{1}}
-\institute[МГУ им. М.В. Ломоносова]{Московский Государственный Университет им. М.В. Ломоносова}
+\institute[МГУ им. М.В. Ломоносова]{Московский Государственный Университет им. М.В. Ломоносова,
+физический факультет}
 \titlegraphic{\includegraphics[width=2cm]{ff.png}}
 
 \date{21 Апреля 2021 г.}
@@ -105,7 +106,7 @@
         \includegraphics[width=0.6\linewidth]{detector_structure.eps}
         \caption{Устройство детектора в плоскости $X$: $\alpha$~--- угол между нормалью малого
 участка поверхности и электронным лучом $I_0$, $A,B,C,D$~--- детекторы, O-образец,
-$\Omega_{b}$~--- телесный угол детектора $D$ отклоненного на угол $\theta_b$, $H$~--- рабочее
+$\Omega_{d}$~--- телесный угол детектора $D$ отклоненного на угол $\theta_d$, $H$~--- рабочее
 расстояние СЭМ.}
         {\label{fig:detector_structure}}% chktex 8
     \end{figure}
@@ -114,16 +115,16 @@ $\Omega_{b}$~--- телесный угол детектора $D$ отклоне
 \begin{frame}
     \frametitle{Постановка задачи}
     Согласно~\cite{PaluszynskiSlowko2005Vacuum, DrzazgaPaluszynski2005Measurement} интенсивность
-    сигнала связана с углом наклона соответствующего участка поверхности:
-    $$
+    разностного сигнала связана с углом наклона соответствующего участка поверхности:
+    \begin{equation*}
         I_{AB} = \frac{I_A - I_B}{I_A + I_B} \sim \tan{\alpha^x}, \quad
         I_{EF} = \frac{I_E - I_F}{I_E + I_F} \sim \tan{\alpha^y}
-    $$
+    \end{equation*}
     \textbf{Задача 1:} Сигнал $I_{AB}(x,y), I_{EF}(x,y)$ в области $P$ предполагается известным.
     Необходимо восстановить градиент поверхности
     $
         \left(\frac{\partial Z}{\partial x}(x,y), \frac{\partial Z}{\partial y} (x,y) \right),
-        (x,y) \in P
+        (x,y) \in S
     $.
 
     \vfill
@@ -132,7 +133,7 @@ $\Omega_{b}$~--- телесный угол детектора $D$ отклоне
     \begin{equation}
         {\Big(\frac{\partial Z}{\partial x}(x,y),
         \frac{\partial Z}{\partial y} (x,y)\Big)}^{T} =
-        {\big(P^x(x,y), P^y(x,y)\big)}^T, \quad (x,y) \in P
+        {\big(J_x(x,y), J_y(x,y)\big)}^T, \quad (x,y) \in S
         \label{eq:problem_statement}
     \end{equation}
     предполагается известным. Найти функцию $Z(x,y)$ представляющую восстанавливаемую поверхность.
@@ -224,21 +225,21 @@ $\hat{F^x}$ зависимости сигнала $K^x_{i,j} = F^x (\tan(\alpha^
         A[Z] = {\textbf{\emph{J}}},
     \end{equation*}
 где оператор $A: W_2^2(S) \to L_2(S)$ непрерывен. Этот оператор отображает искомую функцию $Z(x,y)$
-представляющую исследуемую трехмерную поверхность образца с её градиентом ${\textbf{\emph{J}}}$.
+представляющую исследуемую трехмерную поверхность образца в её градиент ${\textbf{\emph{J}}}$.
 В ходе измерений градиента ${\textbf{\emph{J}}}$ мы получаем его приближенное значение
-$\textbf{\emph{J}}_\delta$, такое что верна оценка
-$\|{\textbf{\emph{J}}}_\delta-\bar{{\textbf{\emph{J}}}}\|_{L_2}\leq\delta$.
+$\textbf{\emph{J}}_\delta$, такое что верна ошибка измерений $\delta$ удовлетворяет оценке
+$\|{\textbf{\emph{J}}}_\delta - {{\textbf{\emph{J}}}}\|_{L_2}\leq\delta$.
 
     \framebreak
 
-    Таким образом, образом обратная задача восстановления трехмерной поверхности может принимает
-    вид:
+    Таким образом, образом обратная задача восстановления трехмерной поверхности может быть
+    сформулирована в следующем виде:
     \begin{equation}
         \label{eq:operator_equation}
         A[Z_\delta] = {\textbf{\emph{J}}}_\delta, \quad {\textbf{\emph{J}}}_\delta \in L_2(S).
     \end{equation}
 
-    Решение задачи~(\ref{eq:operator_equation}) ищется в виде элемента $Z_\delta \in W_2^2(S)$,
+    Решение задачи~(\ref{eq:operator_equation}) следует искать в виде элемента $Z_\delta \in W_2^2(S)$,
     реализующего минимум функционала
     \begin{equation}
         \label{functional}
@@ -463,7 +464,7 @@ $\|{\textbf{\emph{J}}}_\delta-\bar{{\textbf{\emph{J}}}}\|_{L_2}\leq\delta$.
     \begin{figure}
         \includegraphics[width=0.5\linewidth]{repo_link.png}
     \end{figure}
-    \usebeamerfont{institute} Contact: \url{Andrey.Borzunov@gmail.com}
+    \usebeamerfont{institute} Контакты: \url{Andrey.Borzunov@gmail.com}
 \end{frame}
 
 \end{document}
