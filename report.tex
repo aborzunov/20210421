@@ -113,9 +113,18 @@ $\Omega_{b}$~--- телесный угол детектора $D$ отклоне
 
 \begin{frame}
     \frametitle{Постановка задачи}
-    Согласно~\cite{PaluszynskiSlowko2005Vacuum, DrzazgaPaluszynski2005Measurement} интенсивность сигнала связана с углом наклона соответствующего участка поверхности:
-    $$ I_{AB} = \frac{I_A - I_B}{I_A + I_B} \sim \tan{\alpha^x}, \quad I_{EF} = \frac{I_E - I_F}{I_E + I_F} \sim \tan{\alpha^y} $$
-    \textbf{Задача 1:} Сигнал $I_{AB}(x,y), I_{EF}(x,y)$ в области $P$ предполагается известным. Необходимо восстановить градиент поверхности $\left(\frac{\partial Z}{\partial x}(x,y), \frac{\partial Z}{\partial y} (x,y) \right), (x,y) \in P$.
+    Согласно~\cite{PaluszynskiSlowko2005Vacuum, DrzazgaPaluszynski2005Measurement} интенсивность
+    сигнала связана с углом наклона соответствующего участка поверхности:
+    $$
+        I_{AB} = \frac{I_A - I_B}{I_A + I_B} \sim \tan{\alpha^x}, \quad
+        I_{EF} = \frac{I_E - I_F}{I_E + I_F} \sim \tan{\alpha^y}
+    $$
+    \textbf{Задача 1:} Сигнал $I_{AB}(x,y), I_{EF}(x,y)$ в области $P$ предполагается известным.
+    Необходимо восстановить градиент поверхности
+    $
+        \left(\frac{\partial Z}{\partial x}(x,y), \frac{\partial Z}{\partial y} (x,y) \right),
+        (x,y) \in P
+    $.
 
     \vfill
 
@@ -124,6 +133,7 @@ $\Omega_{b}$~--- телесный угол детектора $D$ отклоне
         {\Big(\frac{\partial Z}{\partial x}(x,y),
         \frac{\partial Z}{\partial y} (x,y)\Big)}^{T} =
         {\big(P^x(x,y), P^y(x,y)\big)}^T, \quad (x,y) \in P
+        \label{eq:problem_statement}
     \end{equation}
     предполагается известным. Найти функцию $Z(x,y)$ представляющую восстанавливаемую поверхность.
 \end{frame}
@@ -141,17 +151,19 @@ $\Omega_{b}$~--- телесный угол детектора $D$ отклоне
     \frametitle{Восстановление градиента}
 
     Применяя метод калибровочной поверхности (рис.~\ref{fig:inputSphere}), описанный в~\cite{main},
-    необходимо восстановить аппаратные функции $F_x, F_y$ (рис~\ref{fig:Tables})).
+необходимо восстановить аппаратные функции $F_x, F_y$ (рис~\ref{fig:Tables})).
 
     \begin{figure}[hp]
         \includegraphics[width=0.7\linewidth]{S.eps}
-        \caption{\small Разностный сигнал $I_{AB}$ в направлении сканирования вдоль оси $x$~(a) и $y$~(b).}
+        \caption{\small Разностный сигнал $I_{AB}$ в направлении сканирования вдоль
+        оси $x$~(a) и $y$~(b).}
         {\label{fig:inputSphere}}% chktex 8
     \end{figure}
 
     \framebreak
 
-    Исследуемая область представляется в виде матриц $K^x$, $K^y$ размером $(N,N)$, элементами которых является интенсивность сигнала $k^x (i,j)$, $k^y (i,j)$ в точке $(x_j, y_i)$.
+    Исследуемая область представляется в виде матриц $K^x$, $K^y$ размером $(N,N)$,
+элементами которых является интенсивность сигнала $k^x (i,j)$, $k^y (i,j)$ в точке $(x_j, y_i)$.
 
     Для каждого элемента $k^x_{i,j}$ матрицы $K^x$, который принадлежит калибровочной поверхности,
 найдем производную $\frac{\partial z}{\partial x} \big|_{(x_j,y_i)} $ аналитически, таким
@@ -174,7 +186,12 @@ $\hat{F^x}$ зависимости сигнала $K^x_{i,j} = F^x (\tan(\alpha^
 
     \begin{figure}
         \includegraphics[width=0.9\linewidth]{Tables.eps}
-        \caption{График аппаратных функций $F^x$, $F^y$ зависимости угла наклона поверхности (в градусах) от интенсивности сигнала. И их табличного представления $\hat{F^x}$, $\hat{F^y}$}
+        \caption
+        {
+            График аппаратных функций $F^x$, $F^y$ зависимости угла наклона поверхности
+            (в градусах) от интенсивности сигнала. И их табличного представления
+            $\hat{F^x}$, $\hat{F^y}$
+        }
         {\label{fig:Tables}}% chktex 8
     \end{figure}
 
@@ -201,42 +218,28 @@ $\hat{F^x}$ зависимости сигнала $K^x_{i,j} = F^x (\tan(\alpha^
 \begin{frame}[c,allowframebreaks]
     \frametitle{Восстановление поверхности}
 
-    \begin{figure}
-        \includegraphics[width=0.7\linewidth]{input_data2.eps}
-        \caption{Different signals obtained with a scanning electron microscope in
-$X$-direction~(a) and $Y$-direction~(b) to be reconstructed for a silver plate after
-Vickers hardness . The blue line indicates the data source for the profilogram on
-рис.~\ref{fig:results}.}
-        {\label{fig:input_data2}}%
-    \end{figure}
-
-    Исходная задача~(\ref{problem_statement}) может быть сформулирована в операторном виде следующим образом
+    Исходная задача~(\ref{eq:problem_statement}) может быть сформулирована в операторном виде следующим образом
     \begin{equation*}
         \label{operator_equation_0}
         A[Z] = {\textbf{\emph{J}}},
     \end{equation*}
-где оператор $A: W_2^2(S) \to L_2(S)$ непрерывен. Этот оператор связывает искомую функцию  is continuous and unique. This operator associates
-    the function $Z(x,y)$ determining 3D surface of the sample with the gradient of the surface
-    ${\textbf{\emph{J}}}$. Suppose that instead of accurately known $\bar{{\textbf{\emph{J}}}}$
-    its approximate values ${\textbf{\emph{J}}}_\delta$ is known, such that
-    $\|{\textbf{\emph{J}}}_\delta-\bar{{\textbf{\emph{J}}}}\|_{L_2}\leq\delta$. Typical experimental
-    values of a signal which depends on the partial derivatives of the surface for fixed value $y$
-    (blue line on рис.~\ref{fig:input_data2}) are represented on subfigure on рис.~\ref{fig:results}.
+где оператор $A: W_2^2(S) \to L_2(S)$ непрерывен. Этот оператор отображает искомую функцию $Z(x,y)$
+представляющую исследуемую трехмерную поверхность образца с её градиентом ${\textbf{\emph{J}}}$.
+В ходе измерений градиента ${\textbf{\emph{J}}}$ мы получаем его приближенное значение
+$\textbf{\emph{J}}_\delta$, такое что верна оценка
+$\|{\textbf{\emph{J}}}_\delta-\bar{{\textbf{\emph{J}}}}\|_{L_2}\leq\delta$.
 
-    \begin{figure}[t]
-        \includegraphics[width=0.50\linewidth]{results.eps}
-        \caption{The reconstructed surface whose input signal is shown on  рис.~\ref{fig:input_data}.}
-        {\label{fig:results}}
-    \end{figure}
+    \framebreak
 
-    As a result, the inverse problem of reconstruction of 3D surface takes the form
+    Таким образом, образом обратная задача восстановления трехмерной поверхности может принимает
+    вид:
     \begin{equation}
-        \label{operator_equation}
+        \label{eq:operator_equation}
         A[Z_\delta] = {\textbf{\emph{J}}}_\delta, \quad {\textbf{\emph{J}}}_\delta \in L_2(S).
     \end{equation}
 
-
-    The solution to the inverse problem~(\ref{operator_equation}) can be found as an element $Z_\delta \in W_2^2(S)$ that realizes a minimum of the functional
+    Решение задачи~(\ref{eq:operator_equation}) ищется в виде элемента $Z_\delta \in W_2^2(S)$,
+    реализующего минимум функционала
     \begin{equation}
         \label{functional}
         F[Z] = \big\|A[Z] - {\textbf{\emph{J}}}_\delta\big\|_{L_2}^2.
@@ -258,24 +261,23 @@ Vickers hardness . The blue line indicates the data source for the profilogram o
 \end{frame}
 
 \begin{frame}[c,allowframebreaks]
-    \frametitle{Numerical realization}
+    \frametitle{Численная реализация}
 
-    Input data ((a) and (b) at рис.~\ref{fig:input_data}) is represented as matrices $K^x$, $K^y$
-    with sizes $(N \times N)$, their represent the signal intensities $k^x_{i,j} \equiv K^x (i,j)$,
-    $K^y_{i,j} \equiv k^y (i,j)$ at points $(x_j, y_i) \in S$, $i,j = \overline{1,N}$, their values
-    are normed at $1$. Applying the method of calibrating surface, described in~\cite{main},
-    we obtain the components $J_x$ and $J_y$ of the gradient ${\textbf{\emph{J}}}$: $j^x_{i,j}$,
-    $k^y_{i,j}$ at points $(x_j, y_i) \in S$, $i,j = \overline{1,N}$.
-    The distance between two neighboring points along each of the coordinate axes is constant.
+    Входные данные ((a) and (b) at рис.~\ref{fig:input_data}) представляются в виде матриц
+    $K^x$, $K^y$ размера $(N \times N)$, элементами которых являются интенсивности разностных
+    сигналов $k^x_{i,j} \equiv K^x (i,j)$, $K^y_{i,j} \equiv k^y (i,j)$
+    в точках $(x_j, y_i) \in S$, $i,j = \overline{1,N}$, значения которых нормированы на единицу.
+    Поэлементно применяя к элементам матриц соответствующие обратные аппаратные функции получим
+    значения компонент $J_x$ and $J_y$ градиента ${\textbf{\emph{J}}}$: $j^x_{i,j}$,
+    $k^y_{i,j}$ в каждой точке $(x_j, y_i) \in S$, $i,j = \overline{1,N}$ исследуемой области.
 
-    To reconstruct surface topography we rewrite the equation~(\ref{operator_equation}) as
-    $$ \nabla Z(x,y) = (J_x, J_y)^T, \quad (x,y)\in S,$$
-    and add an initial condition $Z(x_0,y_0) = 0$, which is chosen arbitrarily for any point
-    $(x_0,y_0) \in S$ (it is convenient to use $(x_0,y_0) \equiv (0,0)$).
+    Для восстановления топографии поверхности необходимо переписать
+    задачу~(\ref{eq:operator_equation}) в виде конечномерного аналога, дополнив её начальным
+    условием $Z(x_0,y_0) = 0$, для произвольной точки $(x_0, y_0)$.
 
     \framebreak
 
-    Thus, the following problem should be solved:
+    Таким, образом необходимо решить следующую задачу
     \begin{equation}
         \label{system_of_equations}
         \left\{
@@ -288,7 +290,7 @@ Vickers hardness . The blue line indicates the data source for the profilogram o
 
     \framebreak
 
-    Transform observed values of $J_x$ as follows:
+    Для этого необходимо переупорядочить матрицу $X$ компоненты градиента по столбцам
     \begin{equation}
         \label{column-major_ordering}
         J_x \equiv
@@ -319,10 +321,11 @@ Vickers hardness . The blue line indicates the data source for the profilogram o
         \right)
         \equiv{}  B^x.
     \end{equation}
-    Performing in a similar way with $J_y$ we obtain $B^y$, and with unknown surface $Z$ we obtain $\hat{Z}$.
+    Выполняя аналогичное действие со второй компонентой градиента $J_y$ получим $B_y$, с искомой
+    функцией $Z$~--- $\hat{Z}$.
 
 
-    Thus the problem~(\ref{system_of_equations}) can be rewritten in the following matrix form:
+    Что позволит нам записать задачу в матричном виде следующим образом:
     \begin{equation*}
         \label{matrix_equation}
         \hat{A} \hat{Z}  =
@@ -334,9 +337,9 @@ Vickers hardness . The blue line indicates the data source for the profilogram o
         \right)
         \equiv B.
     \end{equation*}
-    Here matrix $\hat{A}$ with sizes $(2N^2 \times N^2)$ represents a finite difference
-    approximation of operators $\frac{\partial}{\partial x}$ (first $N^2$ rows) and
-    $\frac{\partial}{\partial y}$ (the last $N^2$ rows).
+    Здесь матрица $\hat{A}$ размера $(2N^2 \times N^2)$ представляет конечно разностную апроксимацию
+    частной производной $\frac{\partial}{\partial x}$ (первые $N^2$ строк) и
+    $\frac{\partial}{\partial y}$ (последние $N^2$ строк).
 
     \framebreak
 
@@ -354,15 +357,14 @@ Vickers hardness . The blue line indicates the data source for the profilogram o
             a_{N^2+i+N-1, i+N-2} &= &1/h  & for & i = 1, N+1, 2N+1,~\dots, (N-1)N + 1,
         \end{array}
     \end{equation*}
-    where $h$ is a constant distance between two neighboring sample points along axis $X$ or $Y$.
+    где $h$ постоянное расстояние между смежными точками сканирования в исходном изображении.
+    Оно считается постоянным и одинаковым вдоль оси $X$ и $Y$.
     \normalsize
 
     \framebreak
 
-    Its components are represented as
-    where $h$ is a constant distance between two neighboring sample points along axis $X$ or $Y$.
-
-    Then we find
+    С помощью метода наименьших квадратов следует найти переупорядоченный по столбцам вектор
+    сеточного представления искомой функции, представляющей поверхность исследуемого образца.
     \begin{equation*}
         \hat{Z} = \operatorname{argmin}\limits_Z \|\hat{A} Z - B\|^2.
     \end{equation*}
@@ -379,29 +381,74 @@ Vickers hardness . The blue line indicates the data source for the profilogram o
 \end{frame}
 
 \begin{frame}[c,allowframebreaks]
-    \frametitle{Gallery}
+    \frametitle{Результаты восстановления}
 
-    \begin{figure}
-        \includegraphics[width=0.7\linewidth]{berger.eps}
-        \caption{Reconstruction result of input data depicted in рис.~\ref{fig:input_data}.}
+    \begin{figure}[ht]
+        \includegraphics[width=0.65\linewidth]{berger.eps}
+        \caption{Восстановленное изображение поверхности образца для тестирования СЭМ, входные
+        изображения которого изображены на рис.~\ref{fig:input_data}.}
         {\label{fig:berger}}% chktex 8
+    \end{figure}
+
+\framebreak
+
+    \begin{figure}[ht]
+        \includegraphics[width=0.55\linewidth]{pyramid_rotated.png}
+    \end{figure}
+
+\framebreak
+
+    \begin{figure}[ht]
+        \includegraphics[width=0.7\linewidth]{input_data2.eps}
+        \caption{Разностный сигнал полученный с помощью СЭМ в режиме детектирования отраженных
+            электронов вдоль оси $X$ (a), оси $Y$ (b). На снимках изображена серебреная пластина
+            после теста твердости по Виккерсу. Профилограмма сигнала вдоль выделенной синем линии
+            изображена на рис.~\ref{fig:results}.}
+        {\label{fig:input_data2}}%
+    \end{figure}
+
+\framebreak
+
+    \begin{figure}[t]
+        \includegraphics[width=0.40\linewidth]{results.eps}
+        \caption{Восстановленная поверхность, входной сигнал на которой изображен на
+            рис.~\ref{fig:input_data2}.}
+        {\label{fig:results}}
+    \end{figure}
+
+\framebreak
+
+    \begin{figure}[ht]
+        \includegraphics[width=0.55\linewidth]{crooked.png}
     \end{figure}
 
 \framebreak
 
     \begin{figure}
         \includegraphics[width=0.8\linewidth]{indentor-source.eps}
-        \caption{Different signals obtained with a scanning electron microscope in $X$-direction~(a) and $Y$-direction~(b) to be reconstructed for a gold plate after Vickers hardness . The blue line indicates the data source for the profilogram on рис.~\ref{fig:indentor}.}
-        {\label{fig:indentor-source}}% chktex 8
+        \caption{Разностный сигнал полученный с помощью СЭМ в режиме детектирования отраженных
+            электронов вдоль оси $X$ (a), оси $Y$ (b). На снимках изображена серебреная пластина
+            после теста твердости по Виккерсу. Профилограмма сигнала вдоль выделенной синем линии
+        изображена на рис.~\ref{fig:indentor}.}% chktex 8
+        \label{fig:indentor-source}
     \end{figure}
 
 \framebreak
 
     \begin{figure}
-        \includegraphics[width=0.5\linewidth]{indentor.eps}
-        \caption{Reconstruction result of input data depicted in рис.~\ref{fig:indentor-source}.}
+        \includegraphics[width=0.45\linewidth]{indentor.eps}
+        \caption{Восстановленная поверхность, входной сигнал которой изображен на
+        рис.~\ref{fig:indentor-source}}
         {\label{fig:indentor}}% chktex 8
     \end{figure}
+
+\framebreak
+
+    \begin{figure}[ht]
+        \includegraphics[width=0.55\linewidth]{PZT.png}
+        \caption{Восстановленная поверхность участка пьезокерамической пластины.}
+    \end{figure}
+
 
 \end{frame}
 
@@ -410,9 +457,9 @@ Vickers hardness . The blue line indicates the data source for the profilogram o
 \end{frame}
 
 \begin{frame}[c]
-    \frametitle{Thanks for attention!}
-    Presentation source and text available through links:
-    \url{https://github.com/aborzunov/20201201}
+    \frametitle{Спасибо за внимание!}
+    Текст презентации доступен по ссылке
+    \url{https://github.com/aborzunov/20210421}
     \begin{figure}
         \includegraphics[width=0.5\linewidth]{repo_link.png}
     \end{figure}
